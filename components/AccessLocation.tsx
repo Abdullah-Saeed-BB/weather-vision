@@ -25,9 +25,22 @@ export default function AccessLocation() {
         setIsClient(true)
 
         if (!Cookies.get("coords")) {
-            setIsOpen(true);
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((pos) => {
+                    const {latitude, longitude} = pos.coords
+                    Cookies.set("coords", JSON.stringify([latitude, longitude]))
+
+                    router.refresh();
+                }, () => {
+                    setIsOpen(true)
+                })
+            } else {
+                setIsOpen(true)
+            }
+        } else {
+
         }
-    }, [])
+    }, [router])
 
     return isOpen && (
         <div>

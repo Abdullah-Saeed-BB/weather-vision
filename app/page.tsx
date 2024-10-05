@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import styles from "./page.module.css"
 import Warning from "@/components/Dashboard/Warning";
-import Image from "next/image";
 
 export default async function Home() {
   const cookieStore = cookies();
