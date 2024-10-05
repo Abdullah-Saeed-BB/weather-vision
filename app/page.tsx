@@ -23,14 +23,9 @@ export default async function Home() {
           <div className={styles.weatherContent}>
             {weatherData.name && weatherData.sys.country && <h2 className={styles.cityName}>{weatherData.name}, {weatherData.sys.country}</h2>}
             <div className={styles.mainWeather}>
-              <Image 
-                src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} 
-                alt={weatherData.weather[0].description}
-                className={styles.weatherIcon}
-              />
               <p className={styles.temperature}>{Math.round(weatherData.main.temp)}°C</p>
+              <p className={styles.weatherDescription}>{weatherData.weather[0].description}</p>
             </div>
-            <p className={styles.weatherDescription}>{weatherData.weather[0].description}</p>
             
             <div className={styles.weatherDetails}>
               <div className={styles.detailItem}>

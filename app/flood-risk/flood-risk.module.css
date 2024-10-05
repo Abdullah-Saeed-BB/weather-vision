@@ -13,3 +13,20 @@
     height: 300px;
     width: 70%;
 }
+
+.text {
+    color: white
+}
+
+.text li {
+    color: rgb(212, 218, 232);
+}
+
+@media only screen and (max-width: 600px) {
+    .floodCard {
+        flex-direction: column;
+    }
+    .floodMap {
+        width: 100%;
+    }
+}

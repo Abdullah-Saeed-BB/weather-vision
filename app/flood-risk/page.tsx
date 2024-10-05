@@ -28,13 +28,18 @@ function FloodRiskPage() {
 
     return (
         <div className={styles.container}>
-            {/* <pre>{JSON.stringify(coords)}</pre> */}
-            {/* <FloodMap coords={coords?.value ?? "[0, 0]"} style={styles.floodMap}/> */}
             <div className={styles.floodCard}>
                 <FloodMap style={styles.floodMap} data={floodData}/>
-                <ul>
-                     {/* {floodData.map((flood) =>)} */}
-                </ul>
+                <div className={styles.text}>
+                    <h3>All floods ({floodData.length}):</h3>
+                    <ul>
+                        {floodData.map((flood, i) => (
+                            <li key={i}>
+                                <p>Radius: {flood.radius}, Risk ratio: {flood.dangers}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
     )
