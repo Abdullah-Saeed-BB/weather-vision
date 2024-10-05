@@ -1,6 +1,5 @@
 import FloodMap from "@/components/FloodRisk/floodMap"
 import styles from "./flood-risk.module.css"
-import { cookies } from "next/headers"
 
 // Data could use needed
 // coords: [lat, lon]
