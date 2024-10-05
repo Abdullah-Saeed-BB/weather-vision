@@ -1,95 +1,62 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { cookies } from "next/headers";
+import styles from "./page.module.css"
+import Warning from "@/components/Dashboard/Warning";
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+export default async function Home() {
+  const cookieStore = cookies();
+  const coords = cookieStore.get("coords")
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  if (coords?.value) {
+    const [lat, lon] = JSON.parse(coords.value);
+
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=2b672888da0b007a2fda9f5327cb7013`);
+    
+    const weatherData = await res.json();
+
+    return (
+      <div className={styles.container}>
+        <div className={styles.weatherCard}>
+          <div className={styles.map}>
+            <iframe src={`https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=m/s&zoom=900&overlay=ws&product=ecmwf&level=surface&lat=${lat}&lon=${lon}&detailLat=${lat}&detailLon=${lon}&marker=true&message=true&layer=clouds`}></iframe>
+          </div>
+          <div className={styles.weatherContent}>
+            {weatherData.name && weatherData.sys.country && <h2 className={styles.cityName}>{weatherData.name}, {weatherData.sys.country}</h2>}
+            <div className={styles.mainWeather}>
+              <img 
+                src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} 
+                alt={weatherData.weather[0].description}
+                className={styles.weatherIcon}
+              />
+              <p className={styles.temperature}>{Math.round(weatherData.main.temp)}°C</p>
+            </div>
+            <p className={styles.weatherDescription}>{weatherData.weather[0].description}</p>
+            
+            <div className={styles.weatherDetails}>
+              <div className={styles.detailItem}>
+                <span>Feels like: {Math.round(weatherData.main.feels_like)}°C</span>
+              </div>
+              <div className={styles.detailItem}>
+                <span>Humidity: {weatherData.main.humidity}%</span>
+              </div>
+              <div className={styles.detailItem}>
+                <span>Wind: {weatherData.wind.speed} m/s</span>
+              </div>
+              {/* <div className={styles.detailItem}> 
+                <span>Sunrise: {new Date(weatherData.sys.sunrise).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })}</span>
+              </div>
+              <div className={styles.detailItem}>
+                <span>Sunset: {new Date(weatherData.sys.sunset).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric' })}</span>
+              </div> */}
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+          <Warning temp={weatherData.main.feels_like} classN={styles.warningMsg} humidity={weatherData.main.humidity}/>
+
+        {/* <pre>{JSON.stringify(weatherData, undefined, 2)}</pre> */}
+      </div>
+    );
+  } else {
+    return <h3>Wait...</h3>
+  }
+
 }

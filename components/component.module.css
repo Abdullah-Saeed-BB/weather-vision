@@ -1,0 +1,191 @@
+/* Header */
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0.8rem 2rem;
+    /* background-color: #d4e2e5; */
+    background-color: #050c19;
+}
+
+.logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    gap: 10px;
+}
+
+.logo img {
+    border-radius: 100%;
+}
+
+.logo h3 {
+    text-decoration: none;
+    color: #d5e7ff;
+    margin: 0;
+    font-weight: 900;
+}
+
+.headerLinks a {
+    color: #61b6d2;
+    margin: 0 1.5rem;
+    /* font-weight: 700; */
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.headerLinks a:hover {
+    color: #15509e;
+}
+
+.headerAuth {
+    padding: 10px 17px;
+    background-color: #b6d1d7;
+    font-size: 0.9rem;
+    border-radius: 25px;
+}
+
+.headerAuth span {
+    padding: 7px
+}
+
+.headerAuth a, .headerAuth span, .phoneNav a  {
+    color: #0077B6;
+    text-decoration: none;
+}
+
+.headerBtn {
+    outline: none;
+    border: none;
+    background-color: #0c83ab;
+    color: #e2f5f9;
+    padding: 8px 15px;
+    border-radius: 15px;
+}
+
+.headerBtn:hover {
+    background-color: #0077B6;
+}
+
+.phoneHeader {
+    display: none;
+    background-color: #050c19;
+}
+
+.toggleButton {
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 13px;
+    margin-bottom: 8px;
+    filter: invert(85%);
+}
+
+.phoneNav ul{
+    width: full;
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 15px 0;
+    /* font-size: 1.3rem; */
+}
+
+.phoneNav a {
+    font-size: 1.3rem;
+}
+
+.phoneNav li {
+    margin-bottom: 12px;
+}
+
+.phoneNav .headerBtn {
+    font-size: 1.2rem;
+}
+
+/* ------ */
+/* Pop-up */
+/* ------ */
+
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1500;
+}
+
+.popupContent {
+    max-width: 500px;
+    width: 100%;
+    background-color: rgb(225, 228, 236);
+    padding: 25px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.popupContent p {
+    color: rgb(45, 45, 45)
+}
+
+.popupContent div h3 {
+    margin: 0 0 15px 0;
+}
+
+.popupContent div {
+    margin-bottom: 25px;
+}
+
+.popupButton {
+    outline: none;
+    border: none;
+    background-color: #0096C7;
+    color: #d2f1f7;
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+.popupButton:hover {
+    background-color: #0077B6;
+}
+
+.popupButton:disabled {
+    background-color: #06527b;
+    color: #9cdbe7;
+}
+
+.popupMap {
+    width: 100%;
+    height: 250px;
+    margin: 30px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+@media only screen and (max-width: 800px) {
+    .logo {
+        width: fit-content;
+    }
+    
+    .logo h3 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .header {
+        display: none;
+    }
+    .phoneHeader {
+        display: block;
+    }
+}

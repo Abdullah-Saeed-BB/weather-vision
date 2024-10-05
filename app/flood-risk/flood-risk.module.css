@@ -1,0 +1,15 @@
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+}
+
+.floodCard {
+    display: flex;
+    gap: 10px;
+}
+
+.floodMap {
+    height: 300px;
+    width: 70%;
+}
