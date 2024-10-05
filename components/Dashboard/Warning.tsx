@@ -1,6 +1,6 @@
 type props = {
-    temp: Number,
-    humidity: Number,
+    temp: number,
+    humidity: number,
     classN: string
 }
 

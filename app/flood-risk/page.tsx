@@ -25,7 +25,6 @@ const floodData: { coords: [number, number], radius: number, dangers: number}[] 
 ]
 
 function FloodRiskPage() {
-    const cookieStore = cookies();
     // const coords = cookieStore.get("coords")
 
     return (

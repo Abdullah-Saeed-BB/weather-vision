@@ -56,7 +56,7 @@ export default function AccessLocation() {
     )
 }
 
-function MapEvents({setMarkerPos}: {setMarkerPos: Function}) {
+function MapEvents({setMarkerPos}: {setMarkerPos: (coords: [number, number]) => void}) {
     useMapEvents({
         click: async (e) => {
             const {lat, lng} = e.latlng;

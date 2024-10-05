@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Cookies from 'js-cookie'
 import { useRouter } from "next/navigation";
 
-export default function EditLocPopup({setIsEditLocation}: {setIsEditLocation: Function}) {
+export default function EditLocPopup({setIsEditLocation}: {setIsEditLocation: React.Dispatch<React.SetStateAction<boolean>>}) {
     const coords = Cookies.get("coords")
 
     const [isClient, setIsClient] = useState(false);
@@ -13,7 +13,7 @@ export default function EditLocPopup({setIsEditLocation}: {setIsEditLocation: Fu
 
     useEffect(() => {
         setIsClient(true)
-    })
+    }, [])
 
     const handelSaveCoords = () => {
         Cookies.set("coords", JSON.stringify(markerPos))
@@ -46,7 +46,7 @@ export default function EditLocPopup({setIsEditLocation}: {setIsEditLocation: Fu
     )
 }
 
-function MapEvents({setMarkerPos}: {setMarkerPos: Function}) {
+function MapEvents({setMarkerPos}: {setMarkerPos: (coords: [number, number]) => void}) {
     useMapEvents({
         click: async (e) => {
             const {lat, lng} = e.latlng;
