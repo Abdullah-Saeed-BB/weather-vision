@@ -1,32 +1,60 @@
 .container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 10px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px;
 }
 
 .floodCard {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .floodMap {
-    height: 300px;
-    width: 70%;
+  height: 400px;
+  width: 70%;
 }
 
-.text {
-    color: white
+.texts {
+  color: white;
+  width: 30%;
 }
 
-.text li {
-    color: rgb(212, 218, 232);
+.msgsList {
+  padding: 0;
+  list-style: none;
+}
+
+.warnMessage {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
+.warnMessage span {
+  font-weight: bolder;
+}
+
+.msgDang {
+  background-color: rgb(244, 43, 43);
+}
+
+.msgWarn {
+  background-color: rgb(223, 151, 18);
+}
+
+.msgAlert {
+  background-color: rgb(212, 193, 72);
+}
+
+.msgSafe {
+  background-color: rgb(115, 124, 148);
 }
 
 @media only screen and (max-width: 600px) {
-    .floodCard {
-        flex-direction: column;
-    }
-    .floodMap {
-        width: 100%;
-    }
+  .floodCard {
+    flex-direction: column;
+  }
+  .floodMap {
+    width: 100%;
+  }
 }
