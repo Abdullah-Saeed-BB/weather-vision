@@ -1,7 +1,6 @@
 "use client";
 import { Circle, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 
 type Flood = {
   coords: [number, number];
