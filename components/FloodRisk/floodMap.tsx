@@ -32,23 +32,20 @@ export default function FloodMap({
         />
         <Marker position={coords} />
         {data.map((flood: Flood, i) => (
-          <>
+          <div key={i}>
             <Circle
-              key={i}
               center={flood.coords}
               radius={flood.radius / 2}
               color="red"
               opacity={0}
             />
             <Circle
-              key={i}
               center={flood.coords}
               radius={flood.radius}
               color="red"
               opacity={0}
             />
             <Circle
-              key={i}
               center={flood.coords}
               radius={flood.radius * 1.5}
               color="red"
@@ -58,7 +55,7 @@ export default function FloodMap({
                 <span>Dangers: {flood.dangers}%</span>
               </Popup>
             </Circle>
-          </>
+          </div>
         ))}
       </MapContainer>
     );

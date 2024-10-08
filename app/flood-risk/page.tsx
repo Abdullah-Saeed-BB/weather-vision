@@ -53,7 +53,7 @@ function FloodRiskPage() {
           <div className={styles.texts}>
             <h3>Nearst Floods ({floodData.length}):</h3>
             <ul className={styles.msgsList}>
-              {sortFloodData.map((flood, i) => {
+              {sortFloodData.map((flood, index) => {
                 const distanceKM = [
                   (cords[0] - flood.coords[0]) * 110.574,
                   (cords[1] - flood.coords[1]) * 111.32 * Math.cos(cords[0]),
@@ -64,7 +64,7 @@ function FloodRiskPage() {
                 );
 
                 return (
-                  <li key={i}>
+                  <li key={index}>
                     <WarnMessage distance={distance} />
                   </li>
                 );
