@@ -1,0 +1,23 @@
+.main {
+  color: white;
+  padding: 0 15px;
+}
+
+.main p {
+  color: rgb(236, 236, 241);
+}
+
+.points {
+  padding: 0 20px;
+}
+
+.points ul {
+  padding-left: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main p,
+  .points li {
+    font-size: 1.4rem;
+  }
+}
