@@ -28,8 +28,8 @@ const floodData: {
   },
 ];
 
-function FloodRiskPage() {
-  const cookieStore = cookies();
+async function FloodRiskPage() {
+  const cookieStore = await cookies();
   const coords = cookieStore.get("coords");
 
   if (coords?.value) {
@@ -37,10 +37,10 @@ function FloodRiskPage() {
 
     const sortFloodData = floodData.sort((f1, f2) => {
       const disF1 = Math.sqrt(
-        (cords[0] - f1.coords[0]) ** 2 + (cords[1] - f1.coords[1]) ** 2
+        (cords[0] - f1.coords[0]) ** 2 + (cords[1] - f1.coords[1]) ** 2,
       );
       const disF2 = Math.sqrt(
-        (cords[0] - f2.coords[0]) ** 2 + (cords[1] - f2.coords[1]) ** 2
+        (cords[0] - f2.coords[0]) ** 2 + (cords[1] - f2.coords[1]) ** 2,
       );
 
       return disF1 - disF2;
@@ -60,7 +60,7 @@ function FloodRiskPage() {
                 ];
 
                 const distance = Math.sqrt(
-                  distanceKM[0] ** 2 + distanceKM[1] ** 2
+                  distanceKM[0] ** 2 + distanceKM[1] ** 2,
                 );
 
                 return (
